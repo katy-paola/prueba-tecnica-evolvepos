@@ -60,7 +60,7 @@ export default function EditProductPage() {
         const data = await respuesta.json();
         setProducto(data);
       } catch (error) {
-        console.log("Error al obtener los productos: ", error);
+        console.log("Error al obtener el producto: ", error);
       }
     };
     if (id) obtenerProductoPorId();
