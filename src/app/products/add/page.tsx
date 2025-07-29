@@ -2,6 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface categoryProps {
+  id: number;
+  name: string;
+}
 
 type FormData = {
   title: string;
@@ -17,6 +23,23 @@ type FormData = {
 
 export default function AddProductPage() {
   const router = useRouter();
+  const [categories, setCategories] = useState<categoryProps[]>([]);
+
+  //Obtener todas las categorías para que el usuario pueda seleccionar una
+  useEffect(() => {
+    const obtenerCategorias = async () => {
+      try {
+        const respuesta = await fetch(
+          "https://api.escuelajs.co/api/v1/categories"
+        );
+        const data = await respuesta.json();
+        setCategories(data);
+      } catch (error) {
+        console.log("Error al obtener las categorías: ", error);
+      }
+    };
+    obtenerCategorias();
+  }, []);
 
   const {
     register,
@@ -40,13 +63,16 @@ export default function AddProductPage() {
     };
 
     try {
-      const respuesta = await fetch("https://api.escuelajs.co/api/v1/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const respuesta = await fetch(
+        "https://api.escuelajs.co/api/v1/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!respuesta.ok) {
         const errorData = await respuesta.json();
@@ -102,6 +128,24 @@ export default function AddProductPage() {
               placeholder="Elevate your casual wardrobe with our Classic Red Pullover Hoodie. Crafted with a soft cotton blend for ultimate comfort, this vibrant red hoodie features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs for a snug fit. The timeless design ensures easy pairing with jeans or joggers for a relaxed yet stylish look, making it a versatile addition to your everyday attire."
             ></textarea>
           </label>
+          <label htmlFor="category">Categoría</label>
+          <select
+            defaultValue=""
+            {...register("category.id", {
+              required: "La categoría es obligatoria",
+              valueAsNumber: true,
+            })}
+          >
+            <option value="" disabled>
+              Selecciona una categoría
+            </option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+
           <label htmlFor="">
             ID de categoría
             <input

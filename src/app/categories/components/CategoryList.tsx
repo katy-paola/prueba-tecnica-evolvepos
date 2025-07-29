@@ -14,25 +14,24 @@ function CategoryList() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
     null
   );
-const obtenerCategorias = async () => {
-      try {
-        const respuesta = await fetch(
-          "https://api.escuelajs.co/api/v1/categories"
-        );
-        const data = await respuesta.json();
-        setCategories(data);
-      } catch (error) {
-        console.log("Error al obtener las categorías: ", error);
-      }
-    };
+  const obtenerCategorias = async () => {
+    try {
+      const respuesta = await fetch(
+        "https://api.escuelajs.co/api/v1/categories"
+      );
+      const data = await respuesta.json();
+      setCategories(data);
+    } catch (error) {
+      console.log("Error al obtener las categorías: ", error);
+    }
+  };
   useEffect(() => {
-    
     obtenerCategorias();
   }, []);
 
   const handleDeleteSuccess = () => {
     setSelectedCategoryId(null); // Cierra modal
-   obtenerCategorias();// Vuelve a cargar la lista
+    obtenerCategorias(); // Vuelve a cargar la lista
   };
 
   return (
