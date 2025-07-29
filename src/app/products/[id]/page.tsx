@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import DeleteModal from "./components/DeleteModal";
 
 interface productProps {
   id: number;
@@ -51,7 +52,13 @@ export default function ProductDetails() {
       <button onClick={() => setShowDeleteModal(!showDeleteModal)}>
         Eliminar producto
       </button>
-      {showDeleteModal && <p>Modal para eliminar un producto</p>}
+      {showDeleteModal && (
+        <DeleteModal
+          id={producto?.id}
+          showDeleteModal={showDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+        />
+      )}
     </section>
   );
 }

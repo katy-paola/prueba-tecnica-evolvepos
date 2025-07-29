@@ -40,7 +40,7 @@ export default function AddProductPage() {
     };
 
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/products", {
+      const respuesta = await fetch("https://api.escuelajs.co/api/v1/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,13 +48,13 @@ export default function AddProductPage() {
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
+      if (!respuesta.ok) {
+        const errorData = await respuesta.json();
         console.error("Error de la API:", errorData);
         throw new Error(errorData.message || "Error al crear el producto");
       }
 
-      const nuevoProducto = await response.json();
+      const nuevoProducto = await respuesta.json();
       console.log("Producto creado:", nuevoProducto);
       router.push("/");
     } catch (error) {

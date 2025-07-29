@@ -5,7 +5,7 @@ export default function DeleteModal({
   showDeleteModal,
   setShowDeleteModal,
 }: {
-  id: number;
+  id: number | undefined;
   showDeleteModal: boolean;
   setShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
