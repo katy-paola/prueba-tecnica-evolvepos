@@ -17,14 +17,14 @@ type FormData = {
 
 export default function AddProductPage() {
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      images: [{ url: "" }, { url: "" }, { url: "" }],
+      images: [{ url: "" }],
     },
   });
 
@@ -34,7 +34,9 @@ export default function AddProductPage() {
       price: data.price,
       description: data.description,
       categoryId: data.category.id,
-      images: data.images.map((img) => img.url),
+      images: data.images
+        .map((img) => img.url.trim())
+        .filter((url) => url !== ""),
     };
 
     try {
@@ -115,7 +117,9 @@ export default function AddProductPage() {
               Url foto 1
               <input
                 type="text"
-                {...register("images.0.url", { required: true })}
+                {...register("images.0.url", {
+                  required: "La imagen principal es obligatoria",
+                })}
                 placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
               />
             </label>
@@ -123,7 +127,7 @@ export default function AddProductPage() {
               Url foto 2
               <input
                 type="text"
-                {...register("images.1.url", { required: true })}
+                {...register("images.1.url")}
                 placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
               />
             </label>
@@ -131,7 +135,7 @@ export default function AddProductPage() {
               Url foto 3
               <input
                 type="text"
-                {...register("images.2.url", { required: true })}
+                {...register("images.2.url")}
                 placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
               />
             </label>

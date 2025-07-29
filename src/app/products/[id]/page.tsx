@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
 interface productProps {
