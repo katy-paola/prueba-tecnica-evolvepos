@@ -106,26 +106,26 @@ export default function EditProductPage() {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error de la API:", errorData);
-        throw new Error(errorData.message || "Error al crear el producto");
+        throw new Error(errorData.message || "Error al actualizar el producto");
       }
 
-      const nuevoProducto = await response.json();
-      console.log("Producto creado:", nuevoProducto);
-      router.push("/");
+      const productoActualizado = await response.json();
+      console.log("Producto actualizado:", productoActualizado);
+      router.back();
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
         alert(`Error: ${error.message}`);
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al crear el producto.");
+        alert("Ocurrió un error desconocido al actualizar el producto.");
       }
     }
   };
 
   return (
     <section>
-      <h1>Editar producto</h1>
+      <h1>Actualizar producto</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <label htmlFor="">

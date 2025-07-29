@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { useParams } from "next/navigation";
 
 interface productProps {
@@ -19,6 +19,8 @@ interface productProps {
 export default function ProductDetails() {
   const { id } = useParams();
   const [producto, setProducto] = useState<productProps>();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   useEffect(() => {
     const obtenerProductoPorId = async () => {
       try {
@@ -46,6 +48,10 @@ export default function ProductDetails() {
       <p>{producto?.price}</p>
       <p>{producto?.description}</p>
       <p>{producto?.category.name}</p>
+      <button onClick={() => setShowDeleteModal(!showDeleteModal)}>
+        Eliminar producto
+      </button>
+      {showDeleteModal && <p>Modal para eliminar un producto</p>}
     </section>
   );
 }
