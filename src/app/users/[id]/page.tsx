@@ -16,7 +16,7 @@ export default function UserDetails() {
   const [user, setUser] = useState<userProps>();
 
   useEffect(() => {
-    const obtenerProductoPorId = async () => {
+    const obtenerUsuarioPorId = async () => {
       try {
         const respuesta = await fetch(
           `https://api.escuelajs.co/api/v1/users/${id}`
@@ -25,16 +25,16 @@ export default function UserDetails() {
         if (!respuesta.ok) {
           const errorData = await respuesta.json();
           console.error("Error de la API:", errorData);
-          throw new Error(errorData.message || "Error al crear el producto");
+          throw new Error(errorData.message || "Error al obtener el usuario");
         }
 
         const data = await respuesta.json();
         setUser(data);
       } catch (error) {
-        console.log("Error al obtener los productos: ", error);
+        console.log("Error al obtener el usuario: ", error);
       }
     };
-    if (id) obtenerProductoPorId();
+    if (id) obtenerUsuarioPorId();
   }, [id]);
   return (
     <section>
