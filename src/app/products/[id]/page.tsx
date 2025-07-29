@@ -13,7 +13,7 @@ interface productProps {
     slug: string;
     image: string;
   };
-  images: [string];
+  images: string[];
 }
 
 export default function ProductDetails() {

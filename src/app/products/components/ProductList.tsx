@@ -53,11 +53,16 @@ function ProductList() {
         ))}
       </ul>
       <div>
-        <button onClick={() => setPage((p) => Math.max(1, p - 1))}>
+        <button
+          onClick={() => setPage((p) => Math.max(1, p - 1))}
+          disabled={page === 1}
+        >
           Anterior
         </button>
         <span>Página {page}</span>
-        <button onClick={() => setPage((p) => p + 1)}>Siguiente</button>
+        <button onClick={() => setPage((p) => p + 1)} disabled={!hasMore}>
+          Siguiente
+        </button>
       </div>
     </div>
   );

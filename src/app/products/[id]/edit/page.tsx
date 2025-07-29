@@ -1,7 +1,22 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+
+interface productProps {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: {
+    id: number;
+    name: string;
+    slug: string;
+    image: string;
+  };
+  images: string[];
+}
 
 type FormData = {
   title: string;
@@ -15,18 +30,55 @@ type FormData = {
   }[];
 };
 
-export default function AddProductPage() {
+export default function EditProductPage() {
   const router = useRouter();
-  
+  const { id } = useParams();
+
+  const [producto, setProducto] = useState<productProps>();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      images: [{ url: "" }, { url: "" }, { url: "" }],
+      title: "",
+      price: 0,
+      description: "",
+      category: { id: undefined },
+      images: [],
     },
   });
+
+  useEffect(() => {
+    const obtenerProductoPorId = async () => {
+      try {
+        const respuesta = await fetch(
+          `https://api.escuelajs.co/api/v1/products/${id}`
+        );
+        const data = await respuesta.json();
+        setProducto(data);
+      } catch (error) {
+        console.log("Error al obtener los productos: ", error);
+      }
+    };
+    if (id) obtenerProductoPorId();
+  }, [id]);
+
+  useEffect(() => {
+    if (producto) {
+      reset({
+        title: producto.title,
+        price: producto.price,
+        description: producto.description,
+        category: {
+          id: producto.category.id,
+        },
+        images: producto.images.map((img) => ({ url: img })),
+      });
+    }
+  }, [producto, reset]);
 
   const onSubmit = async (data: FormData) => {
     const payload = {
@@ -34,17 +86,22 @@ export default function AddProductPage() {
       price: data.price,
       description: data.description,
       categoryId: data.category.id,
-      images: data.images.map((img) => img.url),
+      images: data.images
+        .map((img) => img.url.trim())
+        .filter((url) => url !== ""),
     };
 
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `https://api.escuelajs.co/api/v1/products/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -68,7 +125,7 @@ export default function AddProductPage() {
 
   return (
     <section>
-      <h1>Agregar nuevo producto</h1>
+      <h1>Editar producto</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <label htmlFor="">
@@ -123,7 +180,7 @@ export default function AddProductPage() {
               Url foto 2
               <input
                 type="text"
-                {...register("images.1.url", { required: true })}
+                {...register("images.1.url")}
                 placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
               />
             </label>
@@ -131,12 +188,12 @@ export default function AddProductPage() {
               Url foto 3
               <input
                 type="text"
-                {...register("images.2.url", { required: true })}
+                {...register("images.2.url")}
                 placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
               />
             </label>
           </fieldset>
-          <button type="submit">Crear producto</button>
+          <button type="submit">Guardar cambios</button>
         </fieldset>
       </form>
     </section>
