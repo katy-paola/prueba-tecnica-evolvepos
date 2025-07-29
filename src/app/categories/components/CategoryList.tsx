@@ -1,16 +1,20 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import DeleteModal from "../[id]/components/DeleteModal";
 
 interface categoryProps {
   id: number;
   name: string;
+  image: string;
 }
 
 function CategoryList() {
   const [categories, setCategories] = useState<categoryProps[]>([]);
-
-  useEffect(() => {
-    const obtenerCategorias = async () => {
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
+    null
+  );
+const obtenerCategorias = async () => {
       try {
         const respuesta = await fetch(
           "https://api.escuelajs.co/api/v1/categories"
@@ -21,8 +25,15 @@ function CategoryList() {
         console.log("Error al obtener las categorías: ", error);
       }
     };
+  useEffect(() => {
+    
     obtenerCategorias();
   }, []);
+
+  const handleDeleteSuccess = () => {
+    setSelectedCategoryId(null); // Cierra modal
+   obtenerCategorias();// Vuelve a cargar la lista
+  };
 
   return (
     <div>
@@ -30,8 +41,19 @@ function CategoryList() {
       <ul>
         {categories.map((category) => (
           <li key={category.id}>
+            <img src={category.image} alt={category.name} />
             <span>{category.id}</span>
             <p>{category.name}</p>
+            <button onClick={() => setSelectedCategoryId(category.id)}>
+              Eliminar categoría
+            </button>
+            {selectedCategoryId === category.id && (
+              <DeleteModal
+                id={category.id}
+                closeDeleteModal={() => setSelectedCategoryId(null)}
+                onDeleteSuccess={handleDeleteSuccess}
+              />
+            )}
           </li>
         ))}
       </ul>
@@ -40,4 +62,3 @@ function CategoryList() {
 }
 
 export default CategoryList;
-
