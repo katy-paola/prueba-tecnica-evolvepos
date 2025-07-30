@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import "./css/add.css";
 
 type FormData = {
@@ -10,8 +9,6 @@ type FormData = {
 };
 
 export default function AddCategoryPage() {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -43,19 +40,52 @@ export default function AddCategoryPage() {
       if (!respuesta.ok) {
         const errorData = await respuesta.json();
         console.error("Error de la API:", errorData);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al crear la categoría",
+            showed: false,
+          })
+        );
         throw new Error(errorData.message || "Error al crear la categoría");
       }
 
-      const nuevaCategoria = await respuesta.json();
-      console.log("Categoría creada:", nuevaCategoria);
-      router.push("/");
+      sessionStorage.removeItem("toast-shown");
+      sessionStorage.setItem(
+        "toast",
+        JSON.stringify({
+          type: "success",
+          message: "Nueva categoría creada",
+          showed: false,
+        })
+      );
+      //Usar window en vez de toast para redireccionar cuando se muestra un toast para que funcione correctamente
+      window.location.href = "/";
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
-        alert(`Error: ${error.message}`);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al crear la categoría",
+            showed: false,
+          })
+        );
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al crear la categoría.");
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Ocurrió un error desconocido al crear la categoría",
+            showed: false,
+          })
+        );
       }
     }
   };

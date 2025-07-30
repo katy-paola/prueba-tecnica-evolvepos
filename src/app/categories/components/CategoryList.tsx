@@ -5,6 +5,7 @@ import DeleteModal from "../[id]/components/DeleteModal";
 import "../css/page.css";
 import DeleteIcon from "@/app/icons/Delete";
 import EditIcon from "@/app/icons/Edit";
+import Link from "next/link";
 
 interface categoryProps {
   id: number;
@@ -64,6 +65,9 @@ function CategoryList() {
             )}
           </li>
         ))}
+        <li className="item-category add">
+          <Link href="/categories/add">Agregar nueva</Link>
+        </li>
       </ul>
     </section>
   );
