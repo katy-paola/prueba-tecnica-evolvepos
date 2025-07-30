@@ -1,15 +1,8 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171717;
+  --foreground: #fff7f7;
   --primary: #75e771;
   --alert: #e66a6a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html,
@@ -66,12 +59,6 @@ a {
 
 .main-header .menu-item:hover {
   text-decoration: underline;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
 
 @media screen and (min-width: 768px) {
