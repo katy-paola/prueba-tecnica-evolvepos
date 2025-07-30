@@ -29,7 +29,9 @@ function ProductList() {
         let url = `https://api.escuelajs.co/api/v1/products`;
 
         if (productTitle !== "") {
-          url += `?title=${productTitle}&offset=${offset}&limit=${limit}`;
+          url += `?title=${encodeURIComponent(
+            productTitle.trim()
+          )}&offset=${offset}&limit=${limit}`;
         } else {
           url += `?offset=${offset}&limit=${limit}`;
         }
@@ -84,7 +86,7 @@ function ProductList() {
           <Link className="add-product" href="/products/add">
             Nuevo
           </Link>
-          <Search setProductTitle={setProductTitle} />
+          <Search setProductTitle={setProductTitle} setPage={setPage} />
         </div>
       </header>{" "}
       {emptySearch === "" ? (
@@ -100,7 +102,10 @@ function ProductList() {
                   >
                     <EditIcon />
                   </a>
-                  <Link className="link-product" href={`/products/${producto.id}`}>
+                  <Link
+                    className="link-product"
+                    href={`/products/${producto.id}`}
+                  >
                     <img
                       className="img-product"
                       src={producto.images[0]}
