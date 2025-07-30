@@ -1,0 +1,67 @@
+fieldset {
+  border: none;
+}
+
+textarea {
+  resize: none;
+  min-height: 64px;
+}
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fields input,
+.fields textarea,
+.fields select {
+  padding: 8px 12px;
+}
+
+.fields .images {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.button-form {
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #0a0a0a;
+  background-color: var(--primary);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-form:hover {
+  scale: 1.01;
+}
+
+@media screen and (min-width: 768px) {
+  .container-form {
+    gap: 32px;
+    padding: 48px 80px;
+  }
+  .button-form {
+    width: max-content;
+    align-self: flex-end;
+  }
+}

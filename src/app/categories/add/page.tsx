@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import "./css/add.css";
 
 type FormData = {
   name: string;
@@ -60,10 +61,10 @@ export default function AddCategoryPage() {
   };
 
   return (
-    <section>
+    <section className="container-form">
       <h1>Agregar nueva categoría</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+        <fieldset className="fields">
           <label htmlFor="">
             Nombre
             <input
@@ -83,7 +84,9 @@ export default function AddCategoryPage() {
               placeholder="https://i.imgur.com/kg1ZhhH.jpeg"
             />
           </label>
-          <button type="submit">Crear categoría</button>
+          <button className="button-form" type="submit">
+            Crear categoría
+          </button>
         </fieldset>
       </form>
     </section>
