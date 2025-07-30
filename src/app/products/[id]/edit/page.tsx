@@ -32,7 +32,6 @@ type FormData = {
 };
 
 export default function EditProductPage() {
-  const router = useRouter();
   const { id } = useParams();
 
   const [producto, setProducto] = useState<productProps>();
@@ -130,7 +129,7 @@ export default function EditProductPage() {
       );
 
       //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
-      window.history.back();
+      window.location.href = `/products/${id}`;
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);

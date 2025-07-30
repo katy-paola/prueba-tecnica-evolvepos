@@ -16,7 +16,6 @@ type FormData = {
 };
 
 export default function EditUserPage() {
-  const router = useRouter();
   const { id } = useParams();
 
   const [user, setUser] = useState<userProps>();
@@ -100,7 +99,7 @@ export default function EditUserPage() {
         })
       );
       //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
-      window.history.back();
+      window.location.href = `/users/${id}`;
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
