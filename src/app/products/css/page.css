@@ -1,0 +1,129 @@
+.container-product {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.header-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-product div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.add-product {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: #0a0a0a;
+  transition: all 0.3s ease;
+}
+
+.add-product:hover {
+  scale: 1.05;
+}
+
+.search-product {
+  flex: 1;
+  max-width: 360px;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.list-product {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  row-gap: 32px;
+}
+
+.edit-product {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+  border-radius: 6px;
+  background-color: var(--primary);
+  color: #0a0a0a;
+  transition: all 0.3s ease;
+}
+
+.edit-product:hover {
+  scale: 1.05;
+}
+
+.item-product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 6px;
+}
+
+.link-product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.img-product {
+  border-radius: 6px 6px 0 0;
+  aspect-ratio: 1.5;
+  object-position: top left;
+}
+
+.title-product {
+  font-weight: 600;
+}
+
+.price-product {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.pagination-container button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #0a0a0a;
+  background-color: var(--primary);
+}
+
+@media screen and (min-width: 768px) {
+  .container-product {
+    gap: 32px;
+    padding: 48px 80px;
+  }
+  .header-product {
+    flex-direction: row;
+  }
+  .header-product div {
+    justify-content: end;
+  }
+  .pagination-container {
+    justify-content: center;
+  }
+}

@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import "../css/edit.css";
 
 interface productProps {
   id: number;
@@ -124,10 +125,10 @@ export default function EditProductPage() {
   };
 
   return (
-    <section>
+    <section className="container-form">
       <h1>Actualizar producto</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+        <fieldset className="fields">
           <label htmlFor="">
             Título
             <input
@@ -167,7 +168,7 @@ export default function EditProductPage() {
               })}
             />
           </label>
-          <fieldset>
+          <fieldset className="images">
             <label htmlFor="">
               Url foto 1
               <input
@@ -193,7 +194,9 @@ export default function EditProductPage() {
               />
             </label>
           </fieldset>
-          <button type="submit">Guardar cambios</button>
+          <button className="button-form" type="submit">
+            Guardar cambios
+          </button>
         </fieldset>
       </form>
     </section>

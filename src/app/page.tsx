@@ -4,9 +4,9 @@ import "./page.css";
 
 export default function Home() {
   return (
-    <div>
+    <section className="main-container">
       <CategoryList />
       <ProductList />
-    </div>
+    </section>
   );
 }

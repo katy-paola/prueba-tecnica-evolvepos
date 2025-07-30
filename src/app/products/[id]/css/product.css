@@ -1,0 +1,137 @@
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 1.3;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.container-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.content-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.images-product-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.images-product-details li {
+  display: flex;
+}
+
+.images-product-details li:first-of-type {
+  grid-column: span 2;
+}
+
+.info-product-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.price-product-details {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+.category-product-details {
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid white;
+}
+
+.buttons-product-details {
+  display: flex;
+  gap: 16px;
+}
+
+.action-product-details {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--primary);
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-product-details.delete {
+  background-color: var(--alert);
+}
+
+.action-product-details:hover {
+  scale: 1.05;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  position: fixed;
+  z-index: 10;
+  top: 40px;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translateX(-50%);
+  background-color: rgb(85, 84, 84);
+  backdrop-filter: blur(4px);
+}
+
+.buttons-delete-container {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+
+.delete-modal button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.delete-modal .close-delete-button {
+  width: max-content;
+  padding: 0;
+  font-size: 12px;
+}
+.cancelar-button {
+  background-color: var(--primary);
+  color: #0a0a0a;
+}
+
+
+@media screen and (min-width: 768px) {
+  .container-product-details {
+    gap: 32px;
+    padding: 48px 80px;
+  }
+  .images-product-details {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+  .images-product-details li:first-of-type {
+    grid-row: span 2;
+  }
+}

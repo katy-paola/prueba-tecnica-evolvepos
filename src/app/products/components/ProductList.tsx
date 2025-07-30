@@ -2,6 +2,9 @@
 import Search from "@/app/components/Search";
 import { useEffect, useState } from "react";
 import { mock_products } from "@/mock-data/products";
+import "../css/page.css";
+import Link from "next/link";
+import EditIcon from "@/app/icons/Edit";
 
 interface productProps {
   id: number;
@@ -15,7 +18,7 @@ function ProductList() {
   const [productTitle, setProductTitle] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const limit = 10;
+  const limit = 12;
   const [emptySearch, setEmptySearch] = useState("");
 
   useEffect(() => {
@@ -74,31 +77,48 @@ function ProductList() {
     obtenerProductos();
   }, [productTitle, page]);
   return (
-    <div>
-      <h1>Productos</h1>
-      <Search setProductTitle={setProductTitle} />
+    <section className="container-product">
+      <header className="header-product">
+        <h2>Productos</h2>
+        <div>
+          <Link className="add-product" href="/products/add">
+            Nuevo
+          </Link>
+          <Search setProductTitle={setProductTitle} />
+        </div>
+      </header>{" "}
       {emptySearch === "" ? (
         <>
           {" "}
-          <ul>
+          <ul className="list-product">
             {productos.map((producto) => (
               <li key={producto.id}>
-                <article>
-                  <img
-                    src={producto.images[0]}
-                    alt={producto.title}
-                    width={200}
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src =
-                        "https://i.imgur.com/sC0ztOB.jpeg";
-                    }}
-                  />
-                  {producto.id}. {producto.title} - ${producto.price}
+                <article className="item-product">
+                  <a
+                    className="edit-product"
+                    href={`/products/${producto.id}/edit`}
+                  >
+                    <EditIcon />
+                  </a>
+                  <Link className="link-product" href={`/products/${producto.id}`}>
+                    <img
+                      className="img-product"
+                      src={producto.images[0]}
+                      alt={producto.title}
+                      width={200}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src =
+                          "https://i.imgur.com/sC0ztOB.jpeg";
+                      }}
+                    />
+                    <p className="title-product">{producto.title}</p>
+                    <span className="price-product">${producto.price}</span>
+                  </Link>
                 </article>
               </li>
             ))}
           </ul>
-          <div>
+          <div className="pagination-container">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
@@ -114,7 +134,7 @@ function ProductList() {
       ) : (
         <p>{emptySearch}</p>
       )}
-    </div>
+    </section>
   );
 }
 

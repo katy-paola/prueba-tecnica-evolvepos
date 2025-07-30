@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import DeleteModal from "../[id]/components/DeleteModal";
+import "../css/page.css";
+import DeleteIcon from "@/app/icons/Delete";
+import EditIcon from "@/app/icons/Edit";
 
 interface categoryProps {
   id: number;
@@ -35,17 +38,23 @@ function CategoryList() {
   };
 
   return (
-    <div>
-      <h1>Categorías</h1>
-      <ul>
+    <section className="container-category">
+      <h2>Categorías</h2>
+      <ul className="list-category">
         {categories.map((category) => (
-          <li key={category.id}>
-            <img src={category.image} alt={category.name} />
-            <span>{category.id}</span>
-            <p>{category.name}</p>
-            <button onClick={() => setSelectedCategoryId(category.id)}>
-              Eliminar categoría
-            </button>
+          <li key={category.id} className="item-category">
+            <div className="info-category">
+              <span>{category.id}</span>
+              <p className="name-category">{category.name}</p>
+            </div>
+            <div className="actions-category">
+              <a href={`/categories/${category.id}/edit`}>
+                <EditIcon />
+              </a>
+              <button onClick={() => setSelectedCategoryId(category.id)}>
+                <DeleteIcon />
+              </button>
+            </div>
             {selectedCategoryId === category.id && (
               <DeleteModal
                 id={category.id}
@@ -56,7 +65,7 @@ function CategoryList() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
 

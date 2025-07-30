@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import "./css/add.css";
 
 interface categoryProps {
   id: number;
@@ -95,10 +96,10 @@ export default function AddProductPage() {
   };
 
   return (
-    <section>
+    <section className="container-form">
       <h1>Agregar nuevo producto</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+        <fieldset className="fields">
           <label htmlFor="">
             Título
             <input
@@ -146,17 +147,7 @@ export default function AddProductPage() {
             ))}
           </select>
 
-          <label htmlFor="">
-            ID de categoría
-            <input
-              type="number"
-              {...register("category.id", {
-                required: "El ID de categoría es obligatorio",
-                valueAsNumber: true,
-              })}
-            />
-          </label>
-          <fieldset>
+          <fieldset className="images">
             <label htmlFor="">
               Url foto 1
               <input
@@ -184,7 +175,7 @@ export default function AddProductPage() {
               />
             </label>
           </fieldset>
-          <button type="submit">Crear producto</button>
+          <button className="button-form" type="submit">Crear producto</button>
         </fieldset>
       </form>
     </section>

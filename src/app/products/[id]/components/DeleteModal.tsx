@@ -39,18 +39,20 @@ export default function DeleteModal({
     }
   };
   return (
-    <form onSubmit={deleteProduct}>
+    <form className="delete-modal" onSubmit={deleteProduct}>
       <button
+        className="close-delete-button"
         type="button"
         onClick={() => setShowDeleteModal(!showDeleteModal)}
       >
         Cerrar
       </button>
       <p>¿Está seguro que desea eliminar este producto?</p>
-      <div>
+      <div className="buttons-delete-container">
         <button type="submit">Sí, eliminar</button>
         <button
           type="button"
+          className="cancelar-button"
           onClick={() => setShowDeleteModal(!showDeleteModal)}
         >
           No, cancelar

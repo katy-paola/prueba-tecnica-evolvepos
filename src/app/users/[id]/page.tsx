@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import "./css/user.css";
 
 interface userProps {
   id: number;
@@ -37,11 +38,19 @@ export default function UserDetails() {
     if (id) obtenerUsuarioPorId();
   }, [id]);
   return (
-    <section>
-      <img src={user?.avatar} alt={`Foto de ${user?.name}`} />
-      <h1>{user?.name}</h1>
-      <p>{user?.role}</p>
-      <p>{user?.email}</p>
+    <section className="container-user">
+      <h1>Perfil de usuario</h1>
+      <article className="card-user">
+        <img src={user?.avatar} alt={`Foto de ${user?.name}`} />
+        <section className="content-user">
+          <h2>{user?.name}</h2>
+          <p>{user?.role}</p>
+          <p>{user?.email}</p>
+          <a className="edit-user" href={`/users/${user?.id}/edit`}>
+            Editar
+          </a>
+        </section>
+      </article>
     </section>
   );
 }

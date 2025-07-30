@@ -38,14 +38,22 @@ export default function DeleteModal({
     }
   };
   return (
-    <form onSubmit={deleteCategory}>
-      <button type="button" onClick={closeDeleteModal}>
+    <form className="delete-modal" onSubmit={deleteCategory}>
+      <button
+        className="close-delete-button"
+        type="button"
+        onClick={closeDeleteModal}
+      >
         Cerrar
       </button>
       <p>¿Está seguro que desea eliminar esta categoría?</p>
-      <div>
+      <div className="buttons-delete-container">
         <button type="submit">Sí, eliminar</button>
-        <button type="button" onClick={closeDeleteModal}>
+        <button
+          type="button"
+          className="cancelar-button"
+          onClick={closeDeleteModal}
+        >
           No, cancelar
         </button>
       </div>

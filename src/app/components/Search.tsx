@@ -6,12 +6,12 @@ export default function Search({
   setProductTitle: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
-    <form>
-      <input
-        type="search"
-        onChange={(e) => setProductTitle(e.target.value)}
-        placeholder="Buscar productos por título"
-      />
-    </form>
+    <input
+      className="search-product"
+      type="search"
+      name="search"
+      onChange={(e) => setProductTitle(e.target.value)}
+      placeholder="Buscar productos por título"
+    />
   );
 }

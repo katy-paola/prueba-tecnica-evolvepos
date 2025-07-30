@@ -1,0 +1,99 @@
+.container-category {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.list-category {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.item-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.info-category {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.name-category {
+  font-size: 0.75rem;
+}
+
+.actions-category {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actions-category a {
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+}
+
+.actions-category button {
+  display: grid;
+  place-items: center;
+  color: var(--alert);
+  border-radius: 6px;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  position: fixed;
+  z-index: 10;
+  top: 40px;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translateX(-50%);
+  background-color: rgb(85, 84, 84);
+  backdrop-filter: blur(4px);
+}
+
+.buttons-delete-container {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+
+.delete-modal button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.delete-modal .close-delete-button {
+  width: max-content;
+  padding: 0;
+  font-size: 12px;
+}
+.cancelar-button {
+  background-color: var(--primary);
+  color: #0a0a0a;
+}
+
+@media screen and (min-width: 768px) {
+  .container-category {
+    gap: 32px;
+    padding: 48px 80px;
+  }
+}

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import DeleteModal from "./components/DeleteModal";
+import "./css/product.css";
 
 interface productProps {
   id: number;
@@ -37,21 +38,36 @@ export default function ProductDetails() {
     if (id) obtenerProductoPorId();
   }, [id]);
   return (
-    <section>
+    <section className="container-product-details">
       <h1>{producto?.title}</h1>
-      <ul>
-        {producto?.images.map((image, i) => (
-          <li key={i}>
-            <img src={image} alt={producto?.title} />
-          </li>
-        ))}
-      </ul>
-      <p>{producto?.price}</p>
-      <p>{producto?.description}</p>
-      <p>{producto?.category.name}</p>
-      <button onClick={() => setShowDeleteModal(!showDeleteModal)}>
-        Eliminar producto
-      </button>
+      <article className="content-product-details">
+        <ul className="images-product-details">
+          {producto?.images.map((image, i) => (
+            <li key={i}>
+              <img src={image} alt={producto?.title} />
+            </li>
+          ))}
+        </ul>
+        <div className="info-product-details">
+          <p className="price-product-details">${producto?.price}</p>
+          <p className="category-product-details">{producto?.category.name}</p>
+        </div>
+        <p>{producto?.description}</p>
+        <div className="buttons-product-details">
+          <a
+            className="action-product-details"
+            href={`/products/${producto?.id}/edit`}
+          >
+            Editar
+          </a>
+          <button
+            className="action-product-details delete"
+            onClick={() => setShowDeleteModal(!showDeleteModal)}
+          >
+            Eliminar
+          </button>
+        </div>
+      </article>
       {showDeleteModal && (
         <DeleteModal
           id={producto?.id}
