@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import "./css/add.css";
 
 type FormData = {
   name: string;
@@ -57,10 +58,10 @@ export default function AddUserPage() {
   };
 
   return (
-    <section>
+    <section className="container-form">
       <h1>Agregar nuevo usuario</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+        <fieldset className="fields">
           <label htmlFor="">
             Nombre
             <input
@@ -111,7 +112,9 @@ export default function AddUserPage() {
             />
             {errors.avatar && <span>{errors.avatar.message}</span>}
           </label>
-          <button type="submit">Crear usuario</button>
+          <button className="button-form" type="submit">
+            Crear usuario
+          </button>
         </fieldset>
       </form>
     </section>

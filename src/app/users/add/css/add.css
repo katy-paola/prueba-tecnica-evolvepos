@@ -47,7 +47,7 @@ textarea {
   color: #0a0a0a;
   background-color: var(--primary);
   border: none;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   cursor: pointer;
 }
 
