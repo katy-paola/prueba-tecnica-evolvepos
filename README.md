@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Ecommerce App
 
-## Getting Started
+## Descripción del proyecto
 
-First, run the development server:
+Esta aplicación es una prueba técnica desarrollada con [Next.js](https://nextjs.org). Permite visualizar, crear, actualizar y eliminar productos, categorías y usuarios. Utiliza la API pública de [Platzi Fake Store API](https://fakeapi.platzi.com/) para la gestión de productos y categorías. La interfaz es moderna y responsiva, facilitando la administración de un catálogo de productos y usuarios.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Requisitos previos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (versión 18 o superior recomendada)
+- npm (gestor de paquetes)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Instalación y ejecución local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clonar el repositorio:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/katy-paola/prueba-tecnica-evolvepos.git
+   cd next-ecommerce-app
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Instalar las dependencias:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Ejecutar la aplicación en modo desarrollo:**
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Abrir el navegador en:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   [http://localhost:3000](http://localhost:3000)
+
+## Enlace a la aplicación desplegada
+
+[Agregue aquí el enlace a la app desplegada en Vercel, Netlify, etc. si corresponde]
+
+---
+
+Cualquier duda o comentario sobre la prueba técnica, quedo atento/a a su revisión.
