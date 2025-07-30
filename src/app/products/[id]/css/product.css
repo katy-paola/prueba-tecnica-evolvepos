@@ -17,6 +17,8 @@ img {
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
+  margin-top: 72px;
+  scroll-margin-top: 72px;
 }
 
 .content-product-details {
@@ -90,7 +92,7 @@ img {
   border-radius: 6px;
   position: fixed;
   z-index: 10;
-  top: 40px;
+  top: 88px;
   left: 50%;
   width: 90%;
   max-width: 400px;
@@ -121,17 +123,19 @@ img {
   color: #0a0a0a;
 }
 
-
 @media screen and (min-width: 768px) {
   .container-product-details {
     gap: 32px;
     padding: 48px 80px;
   }
   .images-product-details {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-}
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
   .images-product-details li:first-of-type {
     grid-row: span 2;
+  }
+  .delete-modal {
+    top: 96px;
   }
 }

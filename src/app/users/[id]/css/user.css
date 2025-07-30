@@ -6,6 +6,8 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 72px;
+  scroll-margin-top: 72px;
 }
 
 .card-user {
