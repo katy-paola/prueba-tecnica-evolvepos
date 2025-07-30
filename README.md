@@ -37,7 +37,3 @@ Esta aplicación es una prueba técnica desarrollada con [Next.js](https://nextj
 ## Enlace a la aplicación desplegada
 
 [Agregue aquí el enlace a la app desplegada en Vercel, Netlify, etc. si corresponde]
-
----
-
-Cualquier duda o comentario sobre la prueba técnica, quedo atento/a a su revisión.
