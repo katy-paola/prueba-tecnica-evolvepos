@@ -24,17 +24,51 @@ export default function DeleteModal({
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error de la API:", errorData);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al eliminar el producto",
+            showed: false,
+          })
+        );
         throw new Error(errorData.message || "Error al eliminar el producto");
       }
-      console.log("Producto eliminado");
-      router.push("/");
+      sessionStorage.removeItem("toast-shown");
+      sessionStorage.setItem(
+        "toast",
+        JSON.stringify({
+          message: "Producto eliminado",
+          showed: false,
+        })
+      );
+
+      //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
+      window.location.href = "/";
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
-        alert(`Error: ${error.message}`);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al eliminar el producto",
+            showed: false,
+          })
+        );
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al eliminar el producto.");
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Ocurrió un error desconocido al eliminar el producto",
+            showed: false,
+          })
+        );
       }
     }
   };

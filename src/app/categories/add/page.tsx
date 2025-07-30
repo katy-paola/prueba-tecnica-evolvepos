@@ -61,7 +61,7 @@ export default function AddCategoryPage() {
           showed: false,
         })
       );
-      //Usar window en vez de toast para redireccionar cuando se muestra un toast para que funcione correctamente
+      //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
       window.location.href = "/";
     } catch (error) {
       if (error instanceof Error) {

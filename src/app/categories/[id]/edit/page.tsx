@@ -78,21 +78,54 @@ export default function EditCategoryPage() {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error de la API:", errorData);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al actualizar la categoría",
+            showed: false,
+          })
+        );
         throw new Error(
           errorData.message || "Error al actualizar la categoría"
         );
       }
 
-      const categoriaActualizada = await response.json();
-      console.log("Categoría actualizada:", categoriaActualizada);
-      router.push("/");
+      sessionStorage.removeItem("toast-shown");
+      sessionStorage.setItem(
+        "toast",
+        JSON.stringify({
+          type: "success",
+          message: "Categoría actualizada",
+          showed: false,
+        })
+      );
+      //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
+      window.history.back();
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
-        alert(`Error: ${error.message}`);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al actualizar la categoría",
+            showed: false,
+          })
+        );
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al actualizar la categoría.");
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Ocurrió un error desconocido al actualizar la categoría",
+            showed: false,
+          })
+        );
       }
     }
   };

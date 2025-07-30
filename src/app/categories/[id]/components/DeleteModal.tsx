@@ -22,18 +22,43 @@ export default function DeleteModal({
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error de la API:", errorData);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al eliminar la categoría",
+            showed: false,
+          })
+        );
         throw new Error(errorData.message || "Error al eliminar la categoría");
       }
-      console.log("Categoría eliminada");
+
       onDeleteSuccess();
       closeDeleteModal();
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
-        alert(`Error: ${error.message}`);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al eliminar la categoría",
+            showed: false,
+          })
+        );
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al eliminar la categoría.");
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Ocurrió un error desconocido al eliminar la categoría",
+            showed: false,
+          })
+        );
       }
     }
   };

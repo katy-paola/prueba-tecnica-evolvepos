@@ -40,19 +40,52 @@ export default function AddUserPage() {
       if (!respuesta.ok) {
         const errorData = await respuesta.json();
         console.error("Error de la API:", errorData);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al crear el usuario",
+            showed: false,
+          })
+        );
         throw new Error(errorData.message || "Error al crear el usuario");
       }
 
-      const nuevoUsuario = await respuesta.json();
-      console.log("Usuario creado:", nuevoUsuario);
-      router.push("/users");
+      sessionStorage.removeItem("toast-shown");
+      sessionStorage.setItem(
+        "toast",
+        JSON.stringify({
+          type: "success",
+          message: "Nuevo usuario creado",
+          showed: false,
+        })
+      );
+      //Usar window en vez de router para redireccionar cuando se muestra un toast para que funcione correctamente
+      window.location.href = "/users";
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error al enviar a la API:", error.message);
-        alert(`Error: ${error.message}`);
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Error al crear el usuario",
+            showed: false,
+          })
+        );
       } else {
         console.error("Error desconocido:", error);
-        alert("Ocurrió un error desconocido al crear el usuario.");
+        sessionStorage.removeItem("toast-shown");
+        sessionStorage.setItem(
+          "toast",
+          JSON.stringify({
+            type: "error",
+            message: "Ocurrió un error desconocido al crear el usuario",
+            showed: false,
+          })
+        );
       }
     }
   };
