@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import "../css/edit.css";
 
 interface userProps {
   name: string;
@@ -95,10 +96,10 @@ export default function EditUserPage() {
   };
 
   return (
-    <section>
+    <section className="container-form">
       <h1>Actualizar usuario</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+        <fieldset className="fields">
           <label htmlFor="">
             Nombre
             <input
@@ -123,7 +124,9 @@ export default function EditUserPage() {
             />
             {errors.email && <span>{errors.email.message}</span>}
           </label>
-          <button type="submit">Guardar cambios</button>
+          <button className="button-form" type="submit">
+            Guardar cambios
+          </button>
         </fieldset>
       </form>
     </section>
